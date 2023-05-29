@@ -1,6 +1,7 @@
 import NewChatButton from '../components/NewChatButton';
 import '../styles/Style.css';
-
+import ChatInput from '../components/ChatInput'
+import ChatInterface from '../components/ChatInterface'
 const HomePage = () => {
     return (
         <div className="main">
@@ -8,7 +9,8 @@ const HomePage = () => {
                 <NewChatButton/>
             </aside>
             <section className="chat">
-                <h1>Section</h1>
+                <ChatInterface/>
+                <ChatInput/>
             </section>
         </div>
     )
