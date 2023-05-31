@@ -1,13 +1,13 @@
 import './App.css'
-// import {Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import HomePage from './views/HomePage.jsx'
 
 function App() {
-  
-
   return (
     <>
-      <HomePage/>
+      <Routes>
+        <Route path='/' element={<HomePage/>}/>
+      </Routes>
     </>
   )
 }

@@ -1,16 +1,7 @@
 import '../styles/Style.css';
-import {useState} from 'react';
+import PropTypes from 'prop-types';
 
-const ChatInput = () => {
-    const [input, setInput] = useState("");
-    const [chatLog, setChatLog] = useState("");
-
-    async function handleSubmit(e){
-        e.preventDefault();
-        setChatLog([...chatLog, {user:"me", message:`${input}`}])
-        setInput("");
-    }
-
+const ChatInput = ({ input, setInput, handleSubmit }) => {
     return (
         <div className="chatInputContainer">
             <form onSubmit={handleSubmit}>
@@ -18,6 +9,12 @@ const ChatInput = () => {
             </form>
         </div>
     )
+}
+
+ChatInput.propTypes = {
+    input: PropTypes.string.isRequired,
+    setInput: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired
 }
 
 export default ChatInput
