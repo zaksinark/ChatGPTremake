@@ -5,7 +5,7 @@ import ChatOutput from '../components/ChatOutput';
 import { useState } from 'react';
 
 const HomePage = () => {
-    const OPEN_API_KEY = "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"
+    const REACT_APP_OPEN_API_KEY="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"
     const [input, setInput] = useState("");
     const [chatLog, setChatLog] = useState([{
         sender: "ChatGPT",
@@ -37,15 +37,9 @@ const HomePage = () => {
             return { role: role, content: messageObject.message }
         });
 
-        const systemMessage = {
-            role: "system",
-            content: "Explain all concepts like im 10 years old."
-        }
-
         const apiRequestBody = {
             "model": "gpt-3.5-turbo",
             "messages": [
-                systemMessage,
                 ...apiMessages
             ]
         }
@@ -53,7 +47,7 @@ const HomePage = () => {
         await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + OPEN_API_KEY,
+                "Authorization": "Bearer " + REACT_APP_OPEN_API_KEY,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(apiRequestBody)
