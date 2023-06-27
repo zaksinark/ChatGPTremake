@@ -5,7 +5,7 @@ import ChatOutput from '../components/ChatOutput';
 import { useState } from 'react';
 
 const HomePage = () => {
-    const REACT_APP_OPEN_API_KEY="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"
+    const REACT_APP_OPEN_API_KEY="YOUR_API_KEY_HERE"
     const [input, setInput] = useState("");
     const [chatLog, setChatLog] = useState([{
         sender: "ChatGPT",
@@ -52,16 +52,25 @@ const HomePage = () => {
             },
             body: JSON.stringify(apiRequestBody)
         }).then((data) => {
+            if (!data.ok) {
+                throw new Error(`HTTP error! status: ${data.status}`);
+            }
             return data.json();
         }).then((data) => {
-            console.log(data.choices[0].message.content);
-            setChatLog(
-                [...chatMessages, {
-                    message: data.choices[0].message.content,
-                    sender: "ChatGPT"
-                }]
-            )
-        })
+            if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+                console.log(data.choices[0].message.content);
+                setChatLog(
+                    [...chatMessages, {
+                        message: data.choices[0].message.content,
+                        sender: "ChatGPT"
+                    }]
+                )
+            } else {
+                throw new Error("Unexpected API response structure");
+            }
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
     }
 
 
