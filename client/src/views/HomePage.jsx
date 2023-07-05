@@ -3,7 +3,7 @@ import '../styles/Style.css';
 import ChatInput from '../components/ChatInput'
 import ChatOutput from '../components/ChatOutput';
 import { useState } from 'react';
-
+//github test push
 const HomePage = () => {
     const REACT_APP_OPEN_API_KEY="YOUR_API_KEY_HERE"
     const [input, setInput] = useState("");
